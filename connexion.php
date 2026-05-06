@@ -1,6 +1,6 @@
 <?php
 $host    = 'localhost';
-$dbname  = 'sneakers';
+$dbname  = 'ssd';
 $user    = 'root';
 $pass    = '';
 $charset = 'utf8mb4';

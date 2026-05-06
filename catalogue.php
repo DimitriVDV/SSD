@@ -1,6 +1,6 @@
 <?php require_once "connexion.php";
 
-$stmt = $pdo->query('SELECT * FROM chaussure ORDER BY nom');
+$stmt = $pdo->query('SELECT * FROM annonces');
  $article = $stmt->fetchAll();
 ?>
 
