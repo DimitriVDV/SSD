@@ -1,3 +1,8 @@
+<?php require_once "connexion.php";
+
+$stmt = $pdo->query('SELECT * FROM chaussure ORDER BY nom');
+ $article = $stmt->fetchAll();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +13,18 @@
      <link href="./src/output.css" rel="stylesheet">
 </head>
 <body>
-    <h1 class="text-amber-300">smair la rein des salopes</h1>
+    <header
+    class="sticky top-0 w-full h-15 z-50 p-3 shadow-lg">
+    <nav class="flex justify-between items-center ">           
+    <h1 class="font-black text-2xl">SSD : Motors</h1>
+ 
+<a href="compte">compte</a>
+</nav>
+ </header>
+<?php
+foreach ($article as $a) {
+ 
+}
+?>
 </body>
 </html>
-<?php
-
-?>
