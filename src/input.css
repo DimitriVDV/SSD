@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* ton animation DOIT être ici */
+@keyframes wave {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-wave {
+  animation: wave 8s linear infinite;
+}
