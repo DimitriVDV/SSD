@@ -1,9 +1,20 @@
 <?php require_once "connexion.php";
 
-$stmt = $pdo->query('SELECT * FROM annonces');
- $article = $stmt->fetchAll();
-?>
+$stmt = $pdo->prepare(
+'SELECT a.nom, a.prix,
+        c.modele,
+        d.cm3,
+        m.marque
+FROM annonces a
+INNER JOIN marque m ON a.marque_id = m.id
+INNER JOIN categories c ON a.categorie_id = c.id
+INNER JOIN dimensions_cm3 d ON a.dimension_id = d.id
+LEFT JOIN reservation r ON a.reservation_id = r.id
 
+');
+$stmt -> execute();
+$article = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,18 +24,14 @@ $stmt = $pdo->query('SELECT * FROM annonces');
      <link href="./src/output.css" rel="stylesheet">
 </head>
 <body>
-    <header
-    class="sticky top-0 w-full h-15 z-50 p-3 shadow-lg">
-    <nav class="flex justify-between items-center ">           
-    <h1 class="font-black text-2xl">SSD : Motors</h1>
- 
-<a href="compte">compte</a>
-</nav>
- </header>
-<?php
-foreach ($article as $a) {
- 
-}
-?>
+<?php include 'header.php';?>
+<article class="flex flex-col w-full">
+    <?php
+foreach ($article as $a) {?>
+ <h3 class="flex"><?= $a["marque"] ?> <?= $a['nom'] ?></h3>
+ <p class="flex"><?= $a['modele'] ?> · <?= $a['cm3'] ?></p>
+<?php } ?>
+</article>
+
 </body>
 </html>
