@@ -9,16 +9,21 @@ $search = $_GET['search'] ?? '';
 
 $sql = "
 SELECT 
-    a.id,
-    a.nom, 
+    a.id, 
+    a.nom,
     a.prix,
     c.modele,
     d.cm3,
-    m.marque
+    m.marque,
+    i.URL,
+    i.URL1,
+    i.URL2
+    
 FROM annonces a
 INNER JOIN marque m ON a.marque_id = m.id
 INNER JOIN categories c ON a.categorie_id = c.id
 INNER JOIN dimensions_cm3 d ON a.dimension_id = d.id
+LEFT JOIN images i ON a.images_id = i.id
 LEFT JOIN reservation r ON a.reservation_id = r.id
 ";
 
@@ -46,23 +51,7 @@ $stmt->execute($params);
 
 $article = $stmt->fetchAll();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="./src/output.css" rel="stylesheet">
-</head>
-
-<body class="flex flex-col">
-    <script>
-        function toggleCart() {
-            const cart = document.getElementById('cart');
-            cart.classList.toggle('translate-x-full');
-        }
-    </script>
     <?php include 'components/header.php';
 
     if (isset($_POST['add'])) {
@@ -122,9 +111,9 @@ $article = $stmt->fetchAll();
                     </span>
 
                     <img
-                        src="images/"
-                        class="w-full h-40 object-contain mb-3"
-                        alt="">
+                        src="<?=$a['URL2']?>"
+                        class="w-full h-40 object-center object-cover mb-3"
+                        alt="photo moto <?= $a['nom'] ?>">
                 </a>
                 <form method="post" class="mt-auto">
                     <input type="hidden" name="id" value="<?= $a["id"] ?>">
