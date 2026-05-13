@@ -1,5 +1,5 @@
 <aside id="cart"
-    class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl p-5 
+    class="fixed top-0 right-0 h-full w-80 bg-stone-900 shadow-2xl p-5 
 transform translate-x-full transition-transform duration-500 ease-in-out z-50">
 
     <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
